@@ -1,0 +1,427 @@
+<template>
+<view class="content">
+	<view :style='{"minHeight":"100%","padding":"20rpx","alignItems":"flex-start","background":"linear-gradient(135.00deg, rgb(206, 209, 242),rgb(228, 185, 225) 100%)","display":"flex","width":"100%","height":"auto"}'>
+		<form :style='{"width":"100%","padding":"24rpx","borderRadius":"20rpx","background":"#fff","display":"block","height":"auto"}' class="app-update-pv">
+			<view :style='{"padding":"12rpx 0","boxShadow":"0px 8rpx 8rpx 0px rgb(234, 236, 255)","margin":"0 0 24rpx 0","borderColor":"#ccc","alignItems":"center","borderWidth":"0","display":"flex","width":"100%","borderStyle":"solid","height":"auto"}' class="">
+				<view :style='{"width":"160rpx","padding":"0 20rpx 0 0","lineHeight":"70rpx","fontSize":"28rpx","color":"#000","textAlign":"right"}' class="title">患者账号</view>
+				<input :style='{"border":"0","padding":"0px 20rpx","margin":"0px","color":"rgb(0, 0, 0)","borderRadius":"8rpx","flex":"1","background":"rgba(255, 255, 255, 0)","fontSize":"28rpx","height":"70rpx"}' :disabled="ro.huanzhezhanghao" v-model="ruleForm.huanzhezhanghao" placeholder="患者账号"  type="text"></input>
+			</view>
+			<view :style='{"padding":"12rpx 0","boxShadow":"0px 8rpx 8rpx 0px rgb(234, 236, 255)","margin":"0 0 24rpx 0","borderColor":"#ccc","alignItems":"center","borderWidth":"0","display":"flex","width":"100%","borderStyle":"solid","height":"auto"}' class="">
+				<view :style='{"width":"160rpx","padding":"0 20rpx 0 0","lineHeight":"70rpx","fontSize":"28rpx","color":"#000","textAlign":"right"}' class="title">患者姓名</view>
+				<input :style='{"border":"0","padding":"0px 20rpx","margin":"0px","color":"rgb(0, 0, 0)","borderRadius":"8rpx","flex":"1","background":"rgba(255, 255, 255, 0)","fontSize":"28rpx","height":"70rpx"}' :disabled="ro.huanzhexingming" v-model="ruleForm.huanzhexingming" placeholder="患者姓名"  type="text"></input>
+			</view>
+			<view :style='{"padding":"12rpx 0","boxShadow":"0px 8rpx 8rpx 0px rgb(234, 236, 255)","margin":"0 0 24rpx 0","borderColor":"#ccc","alignItems":"center","borderWidth":"0","display":"flex","width":"100%","borderStyle":"solid","height":"auto"}' class="">
+				<view :style='{"width":"160rpx","padding":"0 20rpx 0 0","lineHeight":"70rpx","fontSize":"28rpx","color":"#000","textAlign":"right"}' class="title">性别</view>
+				<input :style='{"border":"0","padding":"0px 20rpx","margin":"0px","color":"rgb(0, 0, 0)","borderRadius":"8rpx","flex":"1","background":"rgba(255, 255, 255, 0)","fontSize":"28rpx","height":"70rpx"}' :disabled="ro.xingbie" v-model="ruleForm.xingbie" placeholder="性别"  type="text"></input>
+			</view>
+			<view :style='{"padding":"12rpx 0","boxShadow":"0px 8rpx 8rpx 0px rgb(234, 236, 255)","margin":"0 0 24rpx 0","borderColor":"#ccc","alignItems":"center","borderWidth":"0","display":"flex","width":"100%","borderStyle":"solid","height":"auto"}' class="">
+				<view :style='{"width":"160rpx","padding":"0 20rpx 0 0","lineHeight":"70rpx","fontSize":"28rpx","color":"#000","textAlign":"right"}' class="title">患者电话</view>
+				<input :style='{"border":"0","padding":"0px 20rpx","margin":"0px","color":"rgb(0, 0, 0)","borderRadius":"8rpx","flex":"1","background":"rgba(255, 255, 255, 0)","fontSize":"28rpx","height":"70rpx"}' :disabled="ro.huanzhedianhua" v-model="ruleForm.huanzhedianhua" placeholder="患者电话"  type="text"></input>
+			</view>
+			<view :style='{"padding":"12rpx 0","boxShadow":"0px 8rpx 8rpx 0px rgb(234, 236, 255)","margin":"0 0 24rpx 0","borderColor":"#ccc","alignItems":"center","borderWidth":"0","display":"flex","width":"100%","borderStyle":"solid","height":"auto"}' class="">
+				<view :style='{"width":"160rpx","padding":"0 20rpx 0 0","lineHeight":"70rpx","fontSize":"28rpx","color":"#000","textAlign":"right"}' class="title">年龄</view>
+				<input :style='{"border":"0","padding":"0px 20rpx","margin":"0px","color":"rgb(0, 0, 0)","borderRadius":"8rpx","flex":"1","background":"rgba(255, 255, 255, 0)","fontSize":"28rpx","height":"70rpx"}' :disabled="ro.nianling" v-model="ruleForm.nianling" placeholder="年龄"  type="text"></input>
+			</view>
+			<view :style='{"padding":"12rpx 0","boxShadow":"0px 8rpx 8rpx 0px rgb(234, 236, 255)","margin":"0 0 24rpx 0","borderColor":"#ccc","alignItems":"center","borderWidth":"0","display":"flex","width":"100%","borderStyle":"solid","height":"auto"}' class="" @tap="touxiangTap">
+				<view :style='{"width":"160rpx","padding":"0 20rpx 0 0","lineHeight":"70rpx","fontSize":"28rpx","color":"#000","textAlign":"right"}' class="title">头像</view>
+				<image :style='{"width":"80rpx","margin":"0 0 0 20rpx","borderRadius":"100%","objectFit":"cover","display":"block","height":"80rpx"}' class="avator" v-if="ruleForm.touxiang" :src="baseUrl+ruleForm.touxiang.split(',')[0]" mode="aspectFill"></image>
+				<image :style='{"width":"80rpx","margin":"0 0 0 20rpx","borderRadius":"100%","objectFit":"cover","display":"block","height":"80rpx"}' class="avator" v-else src="../../static/gen/upload.png" mode="aspectFill"></image>
+			</view>
+			<view :style='{"padding":"12rpx 0","boxShadow":"0px 8rpx 8rpx 0px rgb(234, 236, 255)","margin":"0 0 24rpx 0","borderColor":"#ccc","alignItems":"center","borderWidth":"0","display":"flex","width":"100%","borderStyle":"solid","height":"auto"}' class="">
+				<view :style='{"width":"160rpx","padding":"0 20rpx 0 0","lineHeight":"70rpx","fontSize":"28rpx","color":"#000","textAlign":"right"}' class="title">身高</view>
+				<input :style='{"border":"0","padding":"0px 20rpx","margin":"0px","color":"rgb(0, 0, 0)","borderRadius":"8rpx","flex":"1","background":"rgba(255, 255, 255, 0)","fontSize":"28rpx","height":"70rpx"}' :disabled="ro.shengao" v-model="ruleForm.shengao" placeholder="身高"  type="text"></input>
+			</view>
+			<view :style='{"padding":"12rpx 0","boxShadow":"0px 8rpx 8rpx 0px rgb(234, 236, 255)","margin":"0 0 24rpx 0","borderColor":"#ccc","alignItems":"center","borderWidth":"0","display":"flex","width":"100%","borderStyle":"solid","height":"auto"}' class="">
+				<view :style='{"width":"160rpx","padding":"0 20rpx 0 0","lineHeight":"70rpx","fontSize":"28rpx","color":"#000","textAlign":"right"}' class="title">体重</view>
+				<input :style='{"border":"0","padding":"0px 20rpx","margin":"0px","color":"rgb(0, 0, 0)","borderRadius":"8rpx","flex":"1","background":"rgba(255, 255, 255, 0)","fontSize":"28rpx","height":"70rpx"}' :disabled="ro.tizhong" v-model="ruleForm.tizhong" placeholder="体重"  type="text"></input>
+			</view>
+			<view :style='{"padding":"12rpx 0","boxShadow":"0px 8rpx 8rpx 0px rgb(234, 236, 255)","margin":"0 0 24rpx 0","borderColor":"#ccc","alignItems":"center","borderWidth":"0","display":"flex","width":"100%","borderStyle":"solid","height":"auto"}' class="" @tap="danganwenjianTap">
+				<view :style='{"width":"160rpx","padding":"0 20rpx 0 0","lineHeight":"70rpx","fontSize":"28rpx","color":"#000","textAlign":"right"}' class="title">档案文件</view>
+				<input :style='{"border":"0","padding":"0px 20rpx","margin":"0px","color":"rgb(0, 0, 0)","borderRadius":"8rpx","flex":"1","background":"rgba(255, 255, 255, 0)","fontSize":"28rpx","height":"70rpx"}' v-if="ruleForm.danganwenjian"  v-model="baseUrl+ruleForm.danganwenjian" placeholder="档案文件"></input>
+				<image :style='{"width":"80rpx","margin":"0 0 0 20rpx","borderRadius":"100%","objectFit":"cover","display":"block","height":"80rpx"}' class="avator" v-else src="../../static/gen/upload.png" mode="aspectFill"></image>
+			</view>
+			<view :style='{"padding":"12rpx 0","boxShadow":"0px 8rpx 8rpx 0px rgb(234, 236, 255)","margin":"0 0 24rpx 0","borderColor":"#ccc","alignItems":"center","borderWidth":"0","display":"flex","width":"100%","borderStyle":"solid","height":"auto"}' class=" select">
+				<view :style='{"width":"160rpx","padding":"0 20rpx 0 0","lineHeight":"70rpx","fontSize":"28rpx","color":"#000","textAlign":"right"}' class="title">登记日期</view>
+				<picker  :disabled="ro.dengjiriqi" :style='{"width":"100%","flex":"1","height":"auto"}' mode="date" :value="ruleForm.dengjiriqi" @change="dengjiriqiChange">
+					<view :style='{"width":"100%","padding":"0 20rpx","lineHeight":"80rpx","fontSize":"28rpx","color":"#D4C1D6"}' class="uni-input">{{ruleForm.dengjiriqi?ruleForm.dengjiriqi:"请选择登记日期"}}</view>
+				</picker>
+			</view>
+                
+			<view :style='{"padding":"12rpx 0","boxShadow":"0px 8rpx 8rpx 0px rgb(234, 236, 255)","margin":"0 0 24rpx 0","borderColor":"#ccc","alignItems":"center","borderWidth":"0","display":"flex","width":"100%","borderStyle":"solid","height":"auto"}' class="">
+				<view :style='{"width":"160rpx","padding":"0 20rpx 0 0","lineHeight":"70rpx","fontSize":"28rpx","color":"#000","textAlign":"right"}' class="title">慢性疾病</view>
+				<textarea :style='{"border":"0","padding":"20rpx","margin":"0px","color":"rgb(0, 0, 0)","borderRadius":"8rpx","flex":"1","background":"rgba(255, 255, 255, 0)","fontSize":"28rpx","height":"240rpx"}' v-model="ruleForm.manxingjibing" placeholder="慢性疾病" :maxlength="-1"></textarea>
+			</view>
+			<view :style='{"padding":"12rpx 0","boxShadow":"0px 8rpx 8rpx 0px rgb(234, 236, 255)","margin":"0 0 24rpx 0","borderColor":"#ccc","alignItems":"center","borderWidth":"0","display":"flex","width":"100%","borderStyle":"solid","height":"auto"}' class="">
+				<view :style='{"width":"160rpx","padding":"0 20rpx 0 0","lineHeight":"70rpx","fontSize":"28rpx","color":"#000","textAlign":"right"}' class="title">家族病史</view>
+				<textarea :style='{"border":"0","padding":"20rpx","margin":"0px","color":"rgb(0, 0, 0)","borderRadius":"8rpx","flex":"1","background":"rgba(255, 255, 255, 0)","fontSize":"28rpx","height":"240rpx"}' v-model="ruleForm.jiazubingshi" placeholder="家族病史" :maxlength="-1"></textarea>
+			</view>
+			<view :style='{"padding":"12rpx 0","boxShadow":"0px 8rpx 8rpx 0px rgb(234, 236, 255)","margin":"0 0 24rpx 0","borderColor":"#ccc","alignItems":"center","borderWidth":"0","display":"flex","width":"100%","borderStyle":"solid","height":"auto"}' class="">
+				<view :style='{"width":"160rpx","padding":"0 20rpx 0 0","lineHeight":"70rpx","fontSize":"28rpx","color":"#000","textAlign":"right"}' class="title">药物过敏</view>
+				<textarea :style='{"border":"0","padding":"20rpx","margin":"0px","color":"rgb(0, 0, 0)","borderRadius":"8rpx","flex":"1","background":"rgba(255, 255, 255, 0)","fontSize":"28rpx","height":"240rpx"}' v-model="ruleForm.yaowuguomin" placeholder="药物过敏" :maxlength="-1"></textarea>
+			</view>
+			<view :style='{"padding":"12rpx 0","boxShadow":"0px 8rpx 8rpx 0px rgb(234, 236, 255)","margin":"0 0 24rpx 0","borderColor":"#ccc","alignItems":"center","borderWidth":"0","display":"flex","width":"100%","borderStyle":"solid","height":"auto"}' class="">
+				<view :style='{"width":"160rpx","padding":"0 20rpx 0 0","lineHeight":"70rpx","fontSize":"28rpx","color":"#000","textAlign":"right"}' class="title">既往病史</view>
+				<textarea :style='{"border":"0","padding":"20rpx","margin":"0px","color":"rgb(0, 0, 0)","borderRadius":"8rpx","flex":"1","background":"rgba(255, 255, 255, 0)","fontSize":"28rpx","height":"240rpx"}' v-model="ruleForm.jiwangbingshi" placeholder="既往病史" :maxlength="-1"></textarea>
+			</view>
+			<view :style='{"padding":"12rpx 0","boxShadow":"0px 8rpx 8rpx 0px rgb(234, 236, 255)","margin":"0 0 24rpx 0","borderColor":"#ccc","alignItems":"center","borderWidth":"0","display":"flex","width":"100%","borderStyle":"solid","height":"auto"}' class="">
+				<view :style='{"width":"160rpx","padding":"0 20rpx 0 0","lineHeight":"70rpx","fontSize":"28rpx","color":"#000","textAlign":"right"}' class="title">生活方式</view>
+				<textarea :style='{"border":"0","padding":"20rpx","margin":"0px","color":"rgb(0, 0, 0)","borderRadius":"8rpx","flex":"1","background":"rgba(255, 255, 255, 0)","fontSize":"28rpx","height":"240rpx"}' v-model="ruleForm.shenghuofangshi" placeholder="生活方式" :maxlength="-1"></textarea>
+			</view>
+			<view :style='{"padding":"12rpx 0","boxShadow":"0px 8rpx 8rpx 0px rgb(234, 236, 255)","margin":"0 0 24rpx 0","borderColor":"#ccc","alignItems":"center","borderWidth":"0","display":"flex","width":"100%","borderStyle":"solid","height":"auto"}' class="">
+				<view :style='{"width":"160rpx","padding":"0 20rpx 0 0","lineHeight":"70rpx","fontSize":"28rpx","color":"#000","textAlign":"right"}' class="title">病情记录</view>
+				<textarea :style='{"border":"0","padding":"20rpx","margin":"0px","color":"rgb(0, 0, 0)","borderRadius":"8rpx","flex":"1","background":"rgba(255, 255, 255, 0)","fontSize":"28rpx","height":"240rpx"}' v-model="ruleForm.bingqingjilu" placeholder="病情记录" :maxlength="-1"></textarea>
+			</view>
+			
+			<view :style='{"padding":"20rpx 0","alignItems":"center","flexWrap":"wrap","display":"flex","width":"100%","justifyContent":"center","height":"auto"}' class="btn" >
+				<button :style='{"border":"0","padding":"0px","margin":"0 0 20rpx","color":"rgb(255, 255, 255)","background":"#E4AED7","width":"100%","lineHeight":"80rpx","fontSize":"28rpx","height":"80rpx"}' @tap="onSubmitTap" class="bg-red">提交</button>
+			</view>
+		</form>
+
+	</view>
+</view>
+</template>
+
+<script>
+	import wPicker from "@/components/w-picker/w-picker.vue";
+	import xiaEditor from '@/components/xia-editor/xia-editor';
+	import multipleSelect from "@/components/momo-multipleSelect/momo-multipleSelect";
+	export default {
+		data() {
+			return {
+				cross:'',
+				ruleForm: {
+				huanzhezhanghao: '',
+				huanzhexingming: '',
+				xingbie: '',
+				huanzhedianhua: '',
+				nianling: '',
+				touxiang: '',
+				shengao: '',
+				tizhong: '',
+				manxingjibing: '',
+				jiazubingshi: '',
+				yaowuguomin: '',
+				jiwangbingshi: '',
+				shenghuofangshi: '',
+				bingqingjilu: '',
+				danganwenjian: '',
+				dengjiriqi: '',
+				},
+				// 登录用户信息
+				user: {},
+				ro:{
+				   huanzhezhanghao : false,
+				   huanzhexingming : false,
+				   xingbie : false,
+				   huanzhedianhua : false,
+				   nianling : false,
+				   touxiang : false,
+				   shengao : false,
+				   tizhong : false,
+				   manxingjibing : false,
+				   jiazubingshi : false,
+				   yaowuguomin : false,
+				   jiwangbingshi : false,
+				   shenghuofangshi : false,
+				   bingqingjilu : false,
+				   danganwenjian : false,
+				   dengjiriqi : false,
+				},
+				virtualPay: false,
+			}
+		},
+		components: {
+			wPicker,
+			xiaEditor,
+			multipleSelect,
+		},
+		computed: {
+			baseUrl() {
+				return this.$base.url;
+			},
+
+
+
+		},
+		async onLoad(options) {
+			if(options.virtualPay){
+				this.virtualPay = true
+			}
+			this.ruleForm.dengjiriqi = this.$utils.getCurDate();
+			let table = uni.getStorageSync("nowTable");
+			// 获取用户信息
+			let res = await this.$api.session(table);
+			this.user = res.data;
+			
+			// ss读取
+			this.ruleForm.huanzhezhanghao = this.user.huanzhezhanghao
+			this.ro.huanzhezhanghao = true;
+			this.ruleForm.huanzhexingming = this.user.huanzhexingming
+			this.ro.huanzhexingming = true;
+			this.ruleForm.xingbie = this.user.xingbie
+			this.ro.xingbie = true;
+			this.ruleForm.huanzhedianhua = this.user.huanzhedianhua
+			this.ro.huanzhedianhua = true;
+			this.ruleForm.nianling = this.user.nianling
+			this.ro.nianling = true;
+
+
+
+			// 如果有登录，获取登录后保存的userid
+			this.ruleForm.userid = uni.getStorageSync("appUserid")
+			if (options.refid) {
+				// 如果上一级页面传递了refid，获取改refid数据信息
+				this.ruleForm.refid = Number(options.refid);
+				this.ruleForm.nickname = uni.getStorageSync("nickname");
+			}
+			// 如果是更新操作
+			if (options.id) {
+				this.ruleForm.id = options.id;
+				// 获取信息
+				res = await this.$api.info(`jiankangdangan`, this.ruleForm.id);
+				this.ruleForm = res.data;
+			}
+			// 跨表
+			this.cross = options.cross;
+			if(options.cross){
+				var obj = uni.getStorageSync('crossObj');
+				for (var o in obj){
+					if(o=='huanzhezhanghao'){
+						this.ruleForm.huanzhezhanghao = obj[o];
+						this.ro.huanzhezhanghao = true;
+						continue;
+					}
+					if(o=='huanzhexingming'){
+						this.ruleForm.huanzhexingming = obj[o];
+						this.ro.huanzhexingming = true;
+						continue;
+					}
+					if(o=='xingbie'){
+						this.ruleForm.xingbie = obj[o];
+						this.ro.xingbie = true;
+						continue;
+					}
+					if(o=='huanzhedianhua'){
+						this.ruleForm.huanzhedianhua = obj[o];
+						this.ro.huanzhedianhua = true;
+						continue;
+					}
+					if(o=='nianling'){
+						this.ruleForm.nianling = obj[o];
+						this.ro.nianling = true;
+						continue;
+					}
+					if(o=='touxiang'){
+						this.ruleForm.touxiang = obj[o].split(",")[0];
+						this.ro.touxiang = true;
+						continue;
+					}
+					if(o=='shengao'){
+						this.ruleForm.shengao = obj[o];
+						this.ro.shengao = true;
+						continue;
+					}
+					if(o=='tizhong'){
+						this.ruleForm.tizhong = obj[o];
+						this.ro.tizhong = true;
+						continue;
+					}
+					if(o=='manxingjibing'){
+						this.ruleForm.manxingjibing = obj[o];
+						this.ro.manxingjibing = true;
+						continue;
+					}
+					if(o=='jiazubingshi'){
+						this.ruleForm.jiazubingshi = obj[o];
+						this.ro.jiazubingshi = true;
+						continue;
+					}
+					if(o=='yaowuguomin'){
+						this.ruleForm.yaowuguomin = obj[o];
+						this.ro.yaowuguomin = true;
+						continue;
+					}
+					if(o=='jiwangbingshi'){
+						this.ruleForm.jiwangbingshi = obj[o];
+						this.ro.jiwangbingshi = true;
+						continue;
+					}
+					if(o=='shenghuofangshi'){
+						this.ruleForm.shenghuofangshi = obj[o];
+						this.ro.shenghuofangshi = true;
+						continue;
+					}
+					if(o=='bingqingjilu'){
+						this.ruleForm.bingqingjilu = obj[o];
+						this.ro.bingqingjilu = true;
+						continue;
+					}
+					if(o=='danganwenjian'){
+						this.ruleForm.danganwenjian = obj[o];
+						this.ro.danganwenjian = true;
+						continue;
+					}
+					if(o=='dengjiriqi'){
+						this.ruleForm.dengjiriqi = obj[o];
+						this.ro.dengjiriqi = true;
+						continue;
+					}
+				}
+			}
+			this.styleChange()
+			this.$forceUpdate()
+			if (uni.getStorageSync('raffleType') && uni.getStorageSync('raffleType') != null) {
+				uni.removeStorageSync('raffleType')
+				setTimeout(() => {
+					this.onSubmitTap()
+				}, 300)
+			}
+		},
+		methods: {
+			styleChange() {
+				this.$nextTick(()=>{
+					// document.querySelectorAll('.app-update-pv . .uni-input-input').forEach(el=>{
+					//   el.style.backgroundColor = this.addUpdateForm.input.content.backgroundColor
+					// })
+				})
+			},
+
+			// 多级联动参数
+
+			dengjiriqiChange(e) {
+				this.ruleForm.dengjiriqi = e.target.value;
+				this.$forceUpdate();
+			},
+
+
+
+			touxiangTap() {
+				let _this = this;
+				this.$api.upload(function(res) {
+					_this.ruleForm.touxiang = 'upload/' + res.file;
+					_this.$forceUpdate();
+					_this.$nextTick(()=>{
+						_this.styleChange()
+					})
+				});
+			},
+			danganwenjianTap() {
+				let _this = this;
+				this.$api.upload(function(res) {
+					_this.ruleForm.danganwenjian = 'upload/' + res.file;
+					_this.$forceUpdate();
+					_this.$nextTick(()=>{
+						_this.styleChange()
+					})
+				});
+			},
+
+			getUUID () {
+				return new Date().getTime();
+			},
+			async onSubmitTap() {
+				let that = this
+				//跨表计算判断
+				var obj;
+				//更新跨表属性
+				var crossuserid;
+				var crossrefid;
+				var crossoptnum;
+				if(this.cross){
+					uni.setStorageSync('crossCleanType',true);
+					var statusColumnName = uni.getStorageSync('statusColumnName');
+					var statusColumnValue = uni.getStorageSync('statusColumnValue');
+					if(statusColumnName!='') {
+						if(!obj) {
+							obj = uni.getStorageSync('crossObj');
+						}
+						if(!statusColumnName.startsWith("[")) {
+							for (var o in obj){
+								if(o==statusColumnName){
+									obj[o] = statusColumnValue;
+								}
+
+							}
+							var table = uni.getStorageSync('crossTable');
+							await this.$api.update(`${table}`, obj);
+						} else {
+							   crossuserid=Number(uni.getStorageSync('appUserid'));
+							   crossrefid=obj['id'];
+							   crossoptnum=uni.getStorageSync('statusColumnName');
+							   crossoptnum=crossoptnum.replace(/\[/,"").replace(/\]/,"");
+						}
+					}
+				}
+				if(crossrefid && crossuserid) {
+					this.ruleForm.crossuserid=crossuserid;
+					this.ruleForm.crossrefid=crossrefid;
+					let params = {
+						page: 1,
+						limit:10,
+						crossuserid:crossuserid,
+						crossrefid:crossrefid,
+					}
+					let res = await this.$api.list(`jiankangdangan`, params);
+					if (res.data.total >= crossoptnum) {
+						this.$utils.msg(uni.getStorageSync('tips'));
+						uni.removeStorageSync('crossCleanType');
+						return false;
+					} else {
+				//跨表计算
+						let oet = {}
+						if(this.ruleForm.id){
+							await this.$api.update(`jiankangdangan`, this.ruleForm);
+						}else{
+							oet = await this.$api.add(`jiankangdangan`, this.ruleForm);
+						}
+
+						this.$utils.msgBack('提交成功');
+					}
+				} else {
+				//跨表计算
+					let oet = {}
+					if(this.ruleForm.id){
+						await this.$api.update(`jiankangdangan`, this.ruleForm);
+					}else{
+						oet = await this.$api.add(`jiankangdangan`, this.ruleForm);
+					}
+
+					this.$utils.msgBack('提交成功');
+				}
+			},
+			optionsChange(e) {
+				this.index = e.target.value
+			},
+			bindDateChange(e) {
+				this.date = e.target.value
+			},
+			getDate(type) {
+				const date = new Date();
+				let year = date.getFullYear();
+				let month = date.getMonth() + 1;
+				let day = date.getDate();
+				if (type === 'start') {
+					year = year - 60;
+				} else if (type === 'end') {
+					year = year + 2;
+				}
+				month = month > 9 ? month : '0' + month;;
+				day = day > 9 ? day : '0' + day;
+				return `${year}-${month}-${day}`;
+			},
+			toggleTab(str) {
+				if(this.ro[str]){
+					return false
+				}
+				this.$refs[str].show();
+			},
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+	.content {
+		min-height: calc(100vh - 44px);
+		box-sizing: border-box;
+	}
+</style>

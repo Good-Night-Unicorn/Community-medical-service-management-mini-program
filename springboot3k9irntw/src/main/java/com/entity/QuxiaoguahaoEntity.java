@@ -1,0 +1,382 @@
+package com.entity;
+
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.lang.reflect.InvocationTargetException;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.apache.commons.beanutils.BeanUtils;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.enums.FieldFill;
+import com.baomidou.mybatisplus.enums.IdType;
+
+
+/**
+ * 取消挂号
+ * 数据库通用操作实体类（普通增删改查）
+ * @author 
+ * @email 
+ * @date 2025-01-17 17:09:21
+ */
+@TableName("quxiaoguahao")
+public class QuxiaoguahaoEntity<T> implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+
+	public QuxiaoguahaoEntity() {
+		
+	}
+	
+	public QuxiaoguahaoEntity(T t) {
+		try {
+			BeanUtils.copyProperties(this, t);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 主键id
+	 */
+    @TableId(type = IdType.AUTO)
+	private Long id;
+	/**
+	 * 科室名称
+	 */
+					
+	private String keshimingcheng;
+	
+	/**
+	 * 科室分类
+	 */
+					
+	private String keshifenlei;
+	
+	/**
+	 * 头像
+	 */
+					
+	private String touxiang;
+	
+	/**
+	 * 挂号费
+	 */
+					
+	private Integer guahaofei;
+	
+	/**
+	 * 取消时间
+	 */
+				
+	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+	@DateTimeFormat 		
+	private Date quxiaoshijian;
+	
+	/**
+	 * 取消原因
+	 */
+					
+	private String quxiaoyuanyin;
+	
+	/**
+	 * 医生账号
+	 */
+					
+	private String yishengzhanghao;
+	
+	/**
+	 * 医生姓名
+	 */
+					
+	private String yishengxingming;
+	
+	/**
+	 * 专业
+	 */
+					
+	private String zhuanye;
+	
+	/**
+	 * 患者账号
+	 */
+					
+	private String huanzhezhanghao;
+	
+	/**
+	 * 患者姓名
+	 */
+					
+	private String huanzhexingming;
+	
+	/**
+	 * 患者电话
+	 */
+					
+	private String huanzhedianhua;
+	
+	/**
+	 * 年龄
+	 */
+					
+	private String nianling;
+	
+	/**
+	 * 医保卡号
+	 */
+					
+	private String yibaokahao;
+	
+	/**
+	 * 是否审核
+	 */
+					
+	private String sfsh;
+	
+	/**
+	 * 审核回复
+	 */
+					
+	private String shhf;
+	
+	/**
+	 * 是否支付
+	 */
+					
+	private String ispay;
+	
+	
+	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+	@DateTimeFormat
+	private Date addtime;
+
+	public Date getAddtime() {
+		return addtime;
+	}
+	public void setAddtime(Date addtime) {
+		this.addtime = addtime;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	/**
+	 * 设置：科室名称
+	 */
+	public void setKeshimingcheng(String keshimingcheng) {
+		this.keshimingcheng = keshimingcheng;
+	}
+	/**
+	 * 获取：科室名称
+	 */
+	public String getKeshimingcheng() {
+		return keshimingcheng;
+	}
+	/**
+	 * 设置：科室分类
+	 */
+	public void setKeshifenlei(String keshifenlei) {
+		this.keshifenlei = keshifenlei;
+	}
+	/**
+	 * 获取：科室分类
+	 */
+	public String getKeshifenlei() {
+		return keshifenlei;
+	}
+	/**
+	 * 设置：头像
+	 */
+	public void setTouxiang(String touxiang) {
+		this.touxiang = touxiang;
+	}
+	/**
+	 * 获取：头像
+	 */
+	public String getTouxiang() {
+		return touxiang;
+	}
+	/**
+	 * 设置：挂号费
+	 */
+	public void setGuahaofei(Integer guahaofei) {
+		this.guahaofei = guahaofei;
+	}
+	/**
+	 * 获取：挂号费
+	 */
+	public Integer getGuahaofei() {
+		return guahaofei;
+	}
+	/**
+	 * 设置：取消时间
+	 */
+	public void setQuxiaoshijian(Date quxiaoshijian) {
+		this.quxiaoshijian = quxiaoshijian;
+	}
+	/**
+	 * 获取：取消时间
+	 */
+	public Date getQuxiaoshijian() {
+		return quxiaoshijian;
+	}
+	/**
+	 * 设置：取消原因
+	 */
+	public void setQuxiaoyuanyin(String quxiaoyuanyin) {
+		this.quxiaoyuanyin = quxiaoyuanyin;
+	}
+	/**
+	 * 获取：取消原因
+	 */
+	public String getQuxiaoyuanyin() {
+		return quxiaoyuanyin;
+	}
+	/**
+	 * 设置：医生账号
+	 */
+	public void setYishengzhanghao(String yishengzhanghao) {
+		this.yishengzhanghao = yishengzhanghao;
+	}
+	/**
+	 * 获取：医生账号
+	 */
+	public String getYishengzhanghao() {
+		return yishengzhanghao;
+	}
+	/**
+	 * 设置：医生姓名
+	 */
+	public void setYishengxingming(String yishengxingming) {
+		this.yishengxingming = yishengxingming;
+	}
+	/**
+	 * 获取：医生姓名
+	 */
+	public String getYishengxingming() {
+		return yishengxingming;
+	}
+	/**
+	 * 设置：专业
+	 */
+	public void setZhuanye(String zhuanye) {
+		this.zhuanye = zhuanye;
+	}
+	/**
+	 * 获取：专业
+	 */
+	public String getZhuanye() {
+		return zhuanye;
+	}
+	/**
+	 * 设置：患者账号
+	 */
+	public void setHuanzhezhanghao(String huanzhezhanghao) {
+		this.huanzhezhanghao = huanzhezhanghao;
+	}
+	/**
+	 * 获取：患者账号
+	 */
+	public String getHuanzhezhanghao() {
+		return huanzhezhanghao;
+	}
+	/**
+	 * 设置：患者姓名
+	 */
+	public void setHuanzhexingming(String huanzhexingming) {
+		this.huanzhexingming = huanzhexingming;
+	}
+	/**
+	 * 获取：患者姓名
+	 */
+	public String getHuanzhexingming() {
+		return huanzhexingming;
+	}
+	/**
+	 * 设置：患者电话
+	 */
+	public void setHuanzhedianhua(String huanzhedianhua) {
+		this.huanzhedianhua = huanzhedianhua;
+	}
+	/**
+	 * 获取：患者电话
+	 */
+	public String getHuanzhedianhua() {
+		return huanzhedianhua;
+	}
+	/**
+	 * 设置：年龄
+	 */
+	public void setNianling(String nianling) {
+		this.nianling = nianling;
+	}
+	/**
+	 * 获取：年龄
+	 */
+	public String getNianling() {
+		return nianling;
+	}
+	/**
+	 * 设置：医保卡号
+	 */
+	public void setYibaokahao(String yibaokahao) {
+		this.yibaokahao = yibaokahao;
+	}
+	/**
+	 * 获取：医保卡号
+	 */
+	public String getYibaokahao() {
+		return yibaokahao;
+	}
+	/**
+	 * 设置：是否审核
+	 */
+	public void setSfsh(String sfsh) {
+		this.sfsh = sfsh;
+	}
+	/**
+	 * 获取：是否审核
+	 */
+	public String getSfsh() {
+		return sfsh;
+	}
+	/**
+	 * 设置：审核回复
+	 */
+	public void setShhf(String shhf) {
+		this.shhf = shhf;
+	}
+	/**
+	 * 获取：审核回复
+	 */
+	public String getShhf() {
+		return shhf;
+	}
+	/**
+	 * 设置：是否支付
+	 */
+	public void setIspay(String ispay) {
+		this.ispay = ispay;
+	}
+	/**
+	 * 获取：是否支付
+	 */
+	public String getIspay() {
+		return ispay;
+	}
+
+}
